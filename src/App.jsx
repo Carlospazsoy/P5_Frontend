@@ -29,6 +29,7 @@ import UserAddresses from './pages/UserAddresses';
 import ProductDetail from './shop/ProductDetail';
 import Cart from './components/Cart';
 import Checkout from './pages/Checkout';
+import HomeTest from './pages/HomeTest';
 
 
 
@@ -38,7 +39,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<HomeTest />} />
+        <Route path='/v1/' element={<Home />} />
         <Route path='/v1/login' element={<PublicOnlyRoute> <Login/> </PublicOnlyRoute>} /> {/* opcion 1 de sintaxis */}
         <Route path='/v1/signup' element={<PublicOnlyRoute children={<SignUp/>}/>} />      {/* opcion 2 de sintaxis */}
         <Route path='/v1/contacto' element={<Contacto/>} />
