@@ -1,0 +1,17 @@
+.card{
+  margin-bottom: 1rem;
+  height: 500px;
+}
+img{
+  /* height: 300px; */
+  /* object-fit: cover; */
+}
+
+/* Small devices (tablets, 768px and up) */
+/* @include media-breakpoint-up(sm) {
+
+  .card{
+
+    width: 20vh;
+  }
+} */
