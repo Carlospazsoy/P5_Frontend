@@ -14,16 +14,28 @@ export default function UserProvider({ children }) {
   });
   // console.log(user);
 
-  useEffect(()=> { /* permite que recarguemos l pagina sin perder la sesion iniciada, se ejecuta como prioridad al ejecuar la app*/
-  /* instance almacena la url del backend */
+  useEffect(()=> { 
+    // Obtener el token del localStorage
+    const token = localStorage.getItem('token');
 
-    instance.get('/v1/auth/recover', { // ruta recover se tuvo que programar en el backend para facilitar el proceso de recuperar me parece que del token(las credenciales del usuario) y no perder la sesion
+    // Si no hay token, no intentamos recuperar la sesión
+    if (!token) {
+      setUser({
+        logged: false,
+        data: {},
+        fetching: false
+      });
+      return;
+    }
+
+    // Si hay token, intentamos recuperar la sesión
+    instance.get('/v1/auth/recover', { 
       headers: {
         // El standard de autenticacion reuiere que se concatene el string Bearer con un espacio y el token de autenticacion
-        Authorization: 'Bearer ' + localStorage.getItem('token'), 
+        Authorization: 'Bearer ' + token, 
       },
     })
-    /* manejo de errores y de exito empleando el setUser del useState  */
+    // Manejo de errores y de exito empleando el setUser del useState
       .then((response) => {
         setUser({
           logged: true,
@@ -37,10 +49,9 @@ export default function UserProvider({ children }) {
           logged: false,
           data:{},
           fetching: false
-        })
+        });
       });
   }, []);  // atencion a la sintaxis de la dependencia vacia [], esto indica que solo se ejecuta una vez
-
 
   // #4 Uso del contexto.  pasarle al proveedor los valores de user y setuser para lograr tanto acceder como actualizar la info en login.jsx 
   

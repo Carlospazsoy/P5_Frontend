@@ -29,7 +29,7 @@ export default function ForgottenPassword() {
       setError(null);
     } catch (error) {
       console.error('Error en el envio de código de recuperación: ' + error);
-      setError('Se produjo un error al enviar el código de recuperación. Por favor, inténtalo de nuevo más tarde.');
+      setError('Se produjo un error al enviar el código de recuperación. Por favor, inténtalo de nuevo más tarde. Algunas causas comunes son la expirción del código o utilizar la misma contraseña ');
       setSuccessMessage(false);
     }
   }
